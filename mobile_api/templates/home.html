@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+</head>
+<body >
+	<h2>Welcome <?php echo $username; ?> !</h2>
+
+	<h3 style="text-align:center;">Recent Posts:</h3>
+	
+	<p>
+		<?php
+			if($recentPosts->num_rows > 0){
+				while($row = $recentPosts->fetch_array(MYSQLI_ASSOC)){
+					#postid, type, parentid, upvotes, downvotes, netvotes, created, title, content, tags
+					if($row["type"] === 'Q'){
+						echo "<h4>".$row["title"]."</h4>";
+						echo "".$row["content"]."<br>";
+						echo "<h5> UpVotes: ".$row["upvotes"]."&nbsp;&nbsp;";
+						echo "DownVotes: ".$row["downvotes"]."</h5>";
+						echo "<h4> TotalVotes: ".$row["netvotes"]."</h4>";
+						echo "<h5> Tags: ".$row["tags"]."</h5>";
+						echo "-----------------------------------------------------------------------";
+					}
+				}
+			}
+		?>
+	</p>
+
+	<h3 style="text-align:center;">Your Posts:</h3>
+	<p><?php
+			if($yourPosts->num_rows > 0){
+				while($row = $yourPosts->fetch_array(MYSQLI_ASSOC)){
+					#postid, type, parentid, upvotes, downvotes, netvotes, created, title, content, tags
+					if($row["type"] === 'Q'){
+						echo "<h4>".$row["title"]."</h4>";
+						echo "".$row["content"]."<br>";
+						echo "<h5> UpVotes: ".$row["upvotes"]."&nbsp;&nbsp;";
+						echo "DownVotes: ".$row["downvotes"]."</h5>";
+						echo "<h4> TotalVotes: ".$row["netvotes"]."</h4>";
+						echo "<h5> Tags: ".$row["tags"]."</h5>";
+						echo "-----------------------------------------------------------------------";
+					}
+				}
+			}
+		?></p>
+</body>
+</html>
