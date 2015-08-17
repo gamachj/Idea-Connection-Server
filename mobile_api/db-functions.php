@@ -13,4 +13,17 @@ function getJsonFromResultObject($result){
 
 	return json_encode($ideas);
 };
+
+/*
+	Function to return the result from ResultObject
+*/
+function getValueFromResultObject($result, $row_key){
+
+	if($result->num_rows > 0){
+		while($row = $result->fetch_array(MYSQLI_ASSOC)){
+			return $row[$row_key];
+		}
+	}
+};
+
 ?>
